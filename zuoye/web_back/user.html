@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文章列表</title>
+    <link rel="stylesheet" href="js/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="./js/bootstrap/css/bootstrap.min.css">
+    <!-- <script src="../../02-代码/bigEvent86/web_back/js/bootstrap/js/bootstrap.min.js"></script> -->
+    <!-- <script src="js/jquery-1.12.4.min.js"></script> -->
+    <script src="./js/jquery-1.12.4.min.js"></script>
+    <script src="./js/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./base/ajax_请求.js"></script>
+    <script src="./base/url.js"></script>
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="common_title">
+            用户信息修改
+        </div>
+        <div class="container-fluid common_con">
+            <form class="form-horizontal article_form">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">用户名称：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="yonghuming" name="username" value="李思思">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">昵称：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="nicheng" name="nickname" value="思思">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">邮箱：</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="youxiang" name="email" value="lisisi@126.com">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">用户图标：</label>
+                    <div class="col-sm-10">
+                        <img src="images/2.jpg" alt="" class="user_pic" id="yonghuimg">
+                        <input type="file" id="exampleInputFile" name="user_pic">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">密码：</label>
+                    <div class="col-sm-4">
+                        <input type="password" class="form-control" id="mima" name="password" value="12345678">
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="button" class="btn btn-success" id="xiugai">修改</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 模态框 -->
+    <div class="modal fade" id="modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">提示信息</h4>
+                </div>
+                <div class="modal-body">
+                    <p>One fine body&hellip;</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+                    <!-- <button type="button" class="btn btn-primary">确定</button> -->
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- 模态框 -->
+
+    <!-- <script src="./js/jquery-1.12.4.min.js"></script> -->
+    <script>
+
+        qingQiu.huoquuser({ //页面初始显示用户实时信息资料
+            type: 'get',
+            fun: function (res) {
+                // console.log(res)
+                $('#yonghuming').val(res.data.username)
+                $('#nicheng').val(res.data.nickname)
+                $('#youxiang').val(res.data.email)
+                $('#yonghuimg').prop('src', res.data.user_pic)
+                $('#mima').val(res.data.password)
+            }
+        })
+
+        $('#exampleInputFile').on('change', function () { //文件域选择文件后上方图片同步显示
+            // console.log(this)
+            var tm = URL.createObjectURL(this.files[0])
+            $('.user_pic').prop('src', tm)
+        })
+
+        $('#xiugai').on('click', function () {
+            var fm = new FormData($('form')[0]);
+            if (fm.get('username').trim() === '' ||
+                fm.get('nickname').trim() === '' ||
+                fm.get('email').trim() === '' ||
+                fm.get('password').trim() === '' ||
+                fm.get('user_pic').size === 0) {
+                $('#modal').modal('show').find('.modal-body p').text('请完整填写表单!~');
+                return;
+            }
+
+            // console.log(fm.get('username'))
+            qingQiu.xiugai({
+                type: 'post',
+                data: fm,
+                fun: function (res) {
+                }
+            })
+        })
+
+
+
+    </script>
+
+</body>
+
+</html>
