@@ -1,5 +1,5 @@
-var qingQiu = {};
-    qingQiu.dengLu = function (opt) {// 登陆请求接口
+var ask = {};
+    ask.dengLu = function (opt) {// 登陆请求接口
         $.ajax({
             type: opt.type,
             url: DENGLU,
@@ -7,7 +7,7 @@ var qingQiu = {};
             success: opt.fun
         })
     }
-    qingQiu.tuiChu = function (opt) {// 退出登陆接口
+    ask.tuiChu = function (opt) {// 退出登陆接口
         $.ajax({
             type: opt.type,
             url: TUICHU_DL,
@@ -15,7 +15,7 @@ var qingQiu = {};
             success: opt.fun
         })
     }
-    qingQiu.huoQuUser = function (opt) {// 获取用户信息(首页)
+    ask.huoQuUser = function (opt) {  // 获取用户信息(两条数据)
         $.ajax({
             type: opt.type,
             url: HUOQU,
@@ -23,7 +23,7 @@ var qingQiu = {};
             success: opt.fun
         })
     }
-    qingQiu.huoquuser = function (opt) {
+    ask.huoquuser = function (opt) {  //获取用户信息(五条数据)
         $.ajax({
             type: opt.type,
             url: HUOQUUSER,
@@ -31,7 +31,7 @@ var qingQiu = {};
             success: opt.fun
         })
     }
-    qingQiu.xiugai = function (opt) {
+    ask.xiugai = function (opt) { //编辑用户信息
         $.ajax({
             type: opt.type,
             url: XIUGAIUSER,
@@ -43,24 +43,66 @@ var qingQiu = {};
     }
 
 
+    ask.class_gain = function (opt) { //获取文章类别
+        $.ajax({
+            type: 'get',
+            url: CLASS_GAIN,
+            data: opt.data,
+            success: opt.fun
+        })
+    }
+    ask.class_add = function (opt) { //新增文章类别
+        $.ajax({
+            type: 'post',
+            url: CLASS_ADD,
+            data: opt.data,
+            success: opt.fun
+        })
+    }
+    ask.class_edit = function (opt) { //编辑文章类别
+        $.ajax({
+            type: 'post',
+            url: CLASS_EDIT,
+            data: opt.data,
+            success: opt.fun
+        })
+    }
+    ask.class_delete = function (opt) { //删除文章类别
+        $.ajax({
+            type: 'post',
+            url: CLASS_DELETE,
+            data: opt.data,
+            success: opt.fun
+        })
+    }
 
-// $.ajax({
-//     type: 'post',
-//     url: DENGLU,
-//     data: {
-//         user_name: txt,
-//         password: pas
-//     },
-//     success: function (res) {
-//         // console.log(8)
-//         console.log(res)
-//         if (res.code === 200) {
-//             location.href = './index.html';
-//         } else {
-//             $('.modal').modal('show').find('.modal-body p').text('用户名或密码错误，请重新输入')
-//             // alert('用户名或密码错误，请重新输入');
-//             // txt = '';
-//             pas = '';
-//         }
-//     }
-// })
+
+
+    ask.essay_search = function (opt) { //文章搜索、筛选
+        $.ajax({
+            type: 'get',
+            url: ESSAY_SEARCH,
+            data: opt.data,
+            success: opt.fun
+        })
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

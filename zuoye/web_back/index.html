@@ -140,7 +140,7 @@
     <!-- 自己写的JS -->
     <script>
         //初始化页面时加载已登陆用户信息
-        qingQiu.huoQuUser({
+        ask.huoQuUser({
             type: 'get',
             fun: function (res) {
                 // console.log(res)
@@ -160,7 +160,7 @@
             $('.modal').modal('show').find('.modal-body p').text('确定要退出登陆吗')
             $('.btn-primary').on('click', function () {
                 console.log('请等待......')
-                qingQiu.tuiChu({
+                ask.tuiChu({
                     type: 'post',
                     fun: function (res) {
                         console.log(res)
